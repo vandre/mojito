@@ -1,0 +1,104 @@
+﻿/*Fix for at budget items been shown as yellow*/
+#module-budget table tr.warning div.bar span.full_bar {
+    border: 1px solid #3d9d50;
+    background: -webkit-linear-gradient(top, #94da52, #2fa736)
+}
+
+ul.planning_items li.warning div.status span.progress_bar.full {
+  background-position:  left -45px;
+}
+#transaction-quickview {
+    float:right;
+}
+
+div.module-transactions tbody td.loading{
+text-align:center !important;
+background-image: url('chrome-extension://__MSG_@@extension_id__/img/refresh-animated.gif');
+background-repeat: no-repeat;
+background-position:63%;
+}
+
+a.mojito{
+width: 16px;
+height: 16px;
+position: absolute;
+right: 13px;
+top: 18px;
+z-index: 100;
+background-repeat: no-repeat;
+background-image: url('chrome-extension://__MSG_@@extension_id__/img/default.png');
+}
+
+a.mojito.asc{
+background-image: url('chrome-extension://__MSG_@@extension_id__/img/ascending.png');
+}
+
+
+a.mojito.desc{
+background-image: url('chrome-extension://__MSG_@@extension_id__/img/descending.png');
+}
+
+/*Increase information density*/
+td.column-main > #column-main > .module {
+    margin-bottom: 25px;
+}
+
+div.module-transactions > div.module-content > table {
+    font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+    font-size: 12px;
+     border: 1px solid #ddd;
+     width:580px;
+}
+
+div.module-transactions tbody td {
+    padding:2px 4px;
+    height:20px;
+    border:1px solid;
+    border-color: #DBDAD8 #EEE ;
+    cursor:pointer;
+}
+
+div.module-transactions tbody td.money {
+    color: #4ba90a;
+}
+
+div.module-transactions tbody tr.pending td {
+    font-style:italic;
+    color:#888;
+}
+
+
+div.module-transactions thead th {
+   font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+   font-size: 12px;
+   font-weight:bold;
+   text-transform:none;
+   background:-webkit-linear-gradient(top,#fff,#e8e8e8);
+   color: #666;
+   padding:6px 4px;
+}
+
+div.module-transactions table tbody tr:nth-child(even) td {
+    background-color: whitesmoke;
+   
+}
+
+div.module-transactions table tbody tr:hover td {
+background-color: #ebf8f0;
+}
+
+#transactions-content.min table tbody tr:nth-child(n+11) {
+    display: none;
+}
+
+div.module-transactions table tbody tr td:last-child {
+    text-align:right;
+}
+
+#module-transactions .show-details, #module-transactions.collapsed .hide-details {
+    display: none;
+}
+
+#module-transactions.collapsed .show-details {
+    display: inline-block;
+}
