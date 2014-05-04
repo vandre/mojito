@@ -1,0 +1,121 @@
+﻿/*copyright vandre mojitoapps@gmail.com*/
+@media print {
+
+    #layer
+    ,*.hide
+    ,#pop-categories-main
+    ,#fi-config-selectors
+    ,#pop-categories-strings
+    ,div.layer
+    ,#body-header
+    ,div.string-bundle
+    ,div.hide
+    ,div[id^="tip_"]
+    ,#txn-column-accounts
+    ,#txn-column-details-personal
+    ,td.column.transactions > :not(#column-transactions)
+    ,div.account-header > :not(h1)
+    ,div.search-container
+    ,#controls-top
+    ,#controls-rules
+    ,#transaction-paging
+    ,td.checkboxes
+    ,td.deals
+    ,td.split
+    ,th.deals
+    ,th.split
+    ,td.attach
+    ,th.attach
+    ,th.checkboxes
+    ,#transaction-list-pending-ctrl
+    ,#results > p > a:not(.selected)
+    ,#transactionExport
+    ,div.bubble-tooltip
+    ,div#search-filters > *.hide
+    ,#search-clear
+    ,#account-summary > table *.hide 
+    ,#transaction-list tbody td.hide
+    ,#body-footer{display:none;}
+
+   
+    #results > p > a.selected {
+        color:black;
+        text-decoration:none;
+    }
+    #results > p > a.selected:before {
+        content: "up to ";
+        color:black;
+    }
+    #account-summary > table th {
+        font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+        text-transform:uppercase;
+        font-size:10px;
+        padding: 2px 6px;
+    }
+    #search-filters-header {
+        display:inline; 
+    }
+    
+    #search-filters-header, #search-filters > small {
+        font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size:10px;
+        padding-right:6px;
+    }
+
+      #account-summary > table td   {
+        font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size:10px;
+        padding: 2px 6px;
+    }
+
+    #column-transactions h1 {
+    font-size:16px;
+    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight:300;
+    }
+ 
+
+    table#transaction-list {
+        border:1px solid #dbdad8;
+        font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+        font-size: 12px;
+        width:700px;
+    }
+    table.table-main:after {
+        font-size:10px;
+        font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+        content: "http://fixingmint.wordpress.com";
+    }
+    table#transaction-list tbody tr.pending {
+    font-style:italic;
+    color:#888;
+    }
+   table#transaction-list thead th {
+       font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+       font-size: 12px;
+       font-weight:bold;
+       text-transform:none;
+       background:#e8e8e8;
+       color: #666;
+       padding:6px 4px;
+    }
+    table#transaction-list tbody td.cat {
+    width:115px;
+    }
+    table#transaction-list tbody td.money {
+    width:90px;
+    }
+    table#transaction-list tbody td {
+    padding:2px 4px;
+    height:18px;
+    border:1px solid;
+    border-color: #DBDAD8 #EEE ;
+    }
+    table#transaction-list tbody tr:nth-child(even) td {
+    background-color: whitesmoke;
+    }
+
+    table#transaction-list tbody tr td:last-child {
+    text-align:right;
+}
+}

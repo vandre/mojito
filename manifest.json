@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "icons": { "16":  "icon/mojito16.png",
+			 "48":  "icon/mojito48.png",
+             "128": "icon/mojito128.png" },
+  "name": "Mojito - Mint with a kick...",
+  "short_name":"Mojito",
+  "description": "Customize Mint timeout, account sort order,  page layout and more...",
+  "version": "1.41",
+  "options_page": "options.html",
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "content_scripts": [ 
+  {
+      "matches": ["*://*.mint.com/*"],
+	  "css":["css/mojito.css", "css/print.css"],
+	  "js": ["Global.js","Mojito.js"]
+  } ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "web_accessible_resources": [
+    "img/*.png","img/*.gif", "icon/*.png", "mojito.css", "print.css", "transactions.html", "options.html"
+  ],
+  "permissions": ["*://*.mint.com/*","storage","activeTab","webNavigation"]
+}
