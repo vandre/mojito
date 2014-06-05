@@ -1,4 +1,4 @@
-﻿/*Fix for at budget items been shown as yellow*/
+/*Fix for at budget items been shown as yellow*/
 #module-budget table tr.warning div.bar span.full_bar {
     border: 1px solid #3d9d50;
     background: -webkit-linear-gradient(top, #94da52, #2fa736)
