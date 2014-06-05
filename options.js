@@ -1,4 +1,4 @@
-﻿//http://stackoverflow.com/questions/13957354/how-to-have-foreach-available-on-pseudo-arrays-returned-by-queryselectorall
+//http://stackoverflow.com/questions/13957354/how-to-have-foreach-available-on-pseudo-arrays-returned-by-queryselectorall
 ['forEach', 'map', 'filter', 'reduce', 'reduceRight', 'every', 'some'].forEach(
     function (p) {
         NodeList.prototype[p] = HTMLCollection.prototype[p] = Array.prototype[p];
