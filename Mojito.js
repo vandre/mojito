@@ -168,7 +168,7 @@ function parseTransactions(req) {
 }
 
 function setupTransactionModule(){
-	if(!OPTIONS.transactions){
+	if(OPTIONS.transactions === false){
 		return;
 	}
 	$.get(chrome.extension.getURL('/transactions.html'), function(){
