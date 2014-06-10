@@ -13,7 +13,7 @@
   {
       "matches": ["*://*.mint.com/*"],
 	  "css":["css/mojito.css", "css/print.css"],
-	  "js": ["Global.js","Mojito.js"]
+	  "js": ["transaction-module.js","Global.js","Mojito.js"]
   } ],
   "background": {
     "scripts": ["background.js"]
