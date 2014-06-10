@@ -26,10 +26,11 @@ function save_options() {
 // Restores select box state to saved value from localStorage.
 function restore_options() {
     chrome.storage.sync.get('options', function (obj) {
-        if (obj.options == undefined) { obj.options = { layout: [], hideZeroBalance: false, disableTimeout: false }; }
+        if (obj.options == undefined) { obj.options = { layout: [], transactions: true, hideZeroBalance: false, disableTimeout: false }; }
         OPTIONS = obj.options;
         document.getElementById('cbZero').checked = obj.options.hideZeroBalance;
         document.getElementById('cbTimeout').checked = obj.options.disableTimeout;
+		document.getElementById('transactions').checked = obj.options.transactions;
         obj.options.layout.forEach(function (id) {
             document.getElementById(id).checked = false;
         });
