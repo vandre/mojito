@@ -1,8 +1,4 @@
-//http://stackoverflow.com/questions/13957354/how-to-have-foreach-available-on-pseudo-arrays-returned-by-queryselectorall
-['forEach', 'map', 'filter', 'reduce', 'reduceRight', 'every', 'some'].forEach(
-    function (p) {
-        NodeList.prototype[p] = HTMLCollection.prototype[p] = Array.prototype[p];
-    });
+NodeList.prototype['forEach'] = HTMLCollection.prototype['forEach'] = Array.prototype['forEach'];
 var OPTIONS = {};
 // Saves options to localStorage.
 function save_options() {
@@ -30,7 +26,6 @@ function restore_options() {
         OPTIONS = obj.options;
         document.getElementById('cbZero').checked = obj.options.hideZeroBalance;
         document.getElementById('cbTimeout').checked = obj.options.disableTimeout;
-		document.getElementById('transactions').checked = obj.options.transactions;
         obj.options.layout.forEach(function (id) {
             document.getElementById(id).checked = false;
         });
