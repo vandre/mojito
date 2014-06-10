@@ -206,9 +206,7 @@ function setupTransactionModule(){
 }
 
 function setupModules() {
-	setupTransactionModule();
-    
-	//Hide modules
+    setupTransactionModule();
     hideModules();
 }
 
@@ -234,8 +232,8 @@ function setupModules() {
             var moduleAlert = $('module-alert');
             var moduleTransactions = $('module-transactions');
             if (moduleAlert != undefined && !moduleTransactions) {
-				setupModules();
-				observer.hasModules = true;
+                setupModules();
+                observer.hasModules = true;
             }
         }
         if (!observer.hasAccounts) {
