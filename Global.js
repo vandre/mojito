@@ -1,6 +1,6 @@
 //Utility methods
 $ = document.getElementById.bind(document);
-httpGet = function (url, callback) {
+$.get = function (url, callback) {
     var oReq = new XMLHttpRequest();
     oReq.open("GET", url, true);
     oReq.onload = callback;
@@ -44,7 +44,7 @@ chrome.storage.sync.get("options", function (obj) {
             $('body-mint').dispatchEvent(mouseEvent('mousedown', 1, 1, 1, 1));
             $('body-mint').dispatchEvent(mouseEvent('mouseup', 1, 1, 1, 1));
             $('body-mint').click();
-            httpGet("userStatus.xevent?rnd=" + Date.now(), function () {});
+            $.get("userStatus.xevent?rnd=" + Date.now(), function () {});
         }, 60 * 1000 * 9);
     }
 });

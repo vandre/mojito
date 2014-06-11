@@ -21,7 +21,7 @@ var TransactionModule = (function(module){
 		if(OPTIONS.transactions === false){
 			return;
 		}
-		httpGet(chrome.extension.getURL('/transactions.html'), function(){
+		$.get(chrome.extension.getURL('/transactions.html'), function(){
 			//Work around for Mint adding extra div around modules
 			var moduleAlert = $('module-alert');
 			var moduleAlertParent = moduleAlert.parentElement
@@ -31,7 +31,7 @@ var TransactionModule = (function(module){
 			}
 			//Show recent transactions
 			var url = "getJsonData.xevent?queryNew=&offset=0&filterType=cash&comparableType=8&acctChanged=T&task=transactions&rnd=" + Date.now();
-			httpGet(url, parseTransactions);
+			$.get(url, parseTransactions);
 
 			//Transaction Module setup
 			var quickView = $('transaction-quickview');
