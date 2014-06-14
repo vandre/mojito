@@ -7,13 +7,8 @@ $.get = function (url, callback) {
     oReq.send();
 }
 
-var methods = ['forEach', 'map', 'filter', 'reduce', 'reduceRight', 'every', 'some'];
+NodeList.prototype['forEach'] = HTMLCollection.prototype['forEach'] = Array.prototype['forEach'];
 
-//http://stackoverflow.com/questions/13957354/how-to-have-foreach-available-on-pseudo-arrays-returned-by-queryselectorall
-methods.forEach(
-    function (p) {
-        NodeList.prototype[p] = HTMLCollection.prototype[p] = Array.prototype[p];
-    });
 //http://stackoverflow.com/questions/1038746/equivalent-of-string-format-in-jquery
 String.prototype.format = function () {
     var args = arguments;
@@ -56,5 +51,4 @@ chrome.storage.sync.get("options", function (obj) {
 
 //chrome.storage.sync.get({ 'options': options });
 var header = $("body-mint");
-if (header) { header.insertAdjacentHTML('beforeend', "<a href={0} target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.42</a>".format(chrome.extension.getURL('options.html'))); }
-
+if (header) { header.insertAdjacentHTML('beforeend', "<a href={0} target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.43</a>".format(chrome.extension.getURL('options.html'))); }
