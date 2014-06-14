@@ -6,14 +6,14 @@
   "name": "Mojito - Mint with a kick...",
   "short_name":"Mojito",
   "description": "Customize Mint timeout, account sort order,  page layout and more...",
-  "version": "1.42",
+  "version": "1.43",
   "options_page": "options.html",
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "content_scripts": [ 
   {
       "matches": ["*://*.mint.com/*"],
 	  "css":["css/mojito.css", "css/print.css"],
-	  "js": ["Global.js","Mojito.js"]
+	  "js": ["transaction-module.js","Global.js","Mojito.js"]
   } ],
   "background": {
     "scripts": ["background.js"]
