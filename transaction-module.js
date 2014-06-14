@@ -4,15 +4,17 @@ var TransactionModule = (function(module){
 		var tran = json.set[0].data;//.slice(0,15);
 		//console.log(tran.length);
 		var rows = "";
-		var tpl = "<tr{5} title='{4}'><td>{0}</td><td>{1}</td><td>{2}</td><td{6}>{3}</td></tr>";
+		var tpl = "<tr{5} title='{4}'><td>{0}</td><td>{1}</td><td {8}><span>{2}</span><span {7}></span></td><td{6}>{3}</td></tr>";
 
 		tran.forEach(function (o) {
 			var pendingCSS = (o.isPending) ? " class='pending' " : "";
 			var moneyCSS = (!o.isDebit) ? " class='money' " : "";
+			var noteCSS = (o.note) ? " class='note' " : "";
+			var noteTitle = (o.note) ? " title='"+o.note+"' " : "";
 
 			if (o.isDebit) { o.amount = "-" + o.amount; }
 
-			rows += tpl.format(o.date, o.account, o.merchant, o.amount, o.category, pendingCSS, moneyCSS);
+			rows += tpl.format(o.date, o.account, o.merchant, o.amount, o.category, pendingCSS, moneyCSS,noteCSS,noteTitle);
 		});
 		$('module-transactions-tbody').innerHTML = rows;
 	}
