@@ -57,6 +57,17 @@ div.module-transactions tbody td {
     border-color: #DBDAD8 #EEE ;
     cursor:pointer;
 }
+div.module-transactions tbody td > span {
+	display:inline-block;
+	vertical-align:middle;
+}
+
+span.note{
+background-image: url('chrome-extension://__MSG_@@extension_id__/img/note.png');
+width:16px;
+height:16px;
+margin-left:4px
+}
 
 div.module-transactions tbody td.money {
     color: #4ba90a;
