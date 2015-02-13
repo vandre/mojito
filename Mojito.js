@@ -184,6 +184,9 @@ function setupModules() {
         }
         if (observer.hasAccounts && observer.hasModules) {
             observer.disconnect();
+            //Remove ad:
+            var adv = document.querySelector('a.accounts-adv');
+            if (adv) { adv.parentNode.removeChild(adv); }
             bindHandlers();
             hideAccounts();
             setupRefreshObserver();
