@@ -150,6 +150,11 @@ function setupModules() {
     hideModules();
 }
 
+function removeAds(){
+	var adv = document.querySelectorAll('a.accounts-adv');
+	adv.forEach(function(el){ el.parentNode.removeChild(el);}); 
+}
+
 (function () {
     if (window.location.href.indexOf('overview.event') == -1) {
         //console.log('Mojito exit');
@@ -184,9 +189,8 @@ function setupModules() {
         }
         if (observer.hasAccounts && observer.hasModules) {
             observer.disconnect();
-            //Remove ad:
-            var adv = document.querySelector('a.accounts-adv');
-            if (adv) { adv.parentNode.removeChild(adv); }
+            //Remove blue ads:
+			removeAds();
             bindHandlers();
             hideAccounts();
             setupRefreshObserver();
