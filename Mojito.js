@@ -140,7 +140,7 @@ function hideModules() {
     if (OPTIONS.layout) {
         OPTIONS.layout.forEach(function (id) {
             var el = document.getElementById(id);
-            el.parentElement.classList.add('hide');
+            if(el) {  el.parentElement.classList.add('hide'); }
         });
     }
 }
