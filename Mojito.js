@@ -155,6 +155,22 @@ function removeAds(){
 	adv.forEach(function(el){ el.parentNode.removeChild(el);}); 
 }
 
+//Code to dynamically fix links with wrong category URL
+(function () {
+  if (window.location.href.indexOf('planning.event') == -1) {    return;    }
+  var target = document.getElementById('body-mint');
+  var observer = new window.MutationObserver(function (mutations) {
+		var everythingElseList = $('spendingEE-list');
+		if (everythingElseList != undefined  ) {
+			var links=document.querySelectorAll('a[href*=category\\=]');
+			links.forEach(function(node){
+				node.href=node.href.replace("category=","category");
+			});
+		}
+  });
+  observer.observe(target, { childList: true, subtree: true });   
+})();
+
 (function () {
     if (window.location.href.indexOf('overview.event') == -1) {
         //console.log('Mojito exit');
