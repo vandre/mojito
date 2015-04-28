@@ -113,3 +113,12 @@ div.module-transactions table tbody tr td:last-child {
 #module-transactions.collapsed .show-details {
     display: inline-block;
 }
+
+a.date-range {
+    margin-left:4px;
+    max-width:60px;
+    clear:both;
+}
+
+a.date-range ~ a.date-range{clear:inherit;}
+
