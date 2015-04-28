@@ -15,6 +15,20 @@ String.prototype.format = function () {
     return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
 };
 
+
+Date.prototype.addDays = function(days)
+{
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+//Returns a Date using US short date format (MM-DD-YY)
+Date.prototype.toShortDateString = function(){
+    var dt= new Date(this.valueOf());
+    var stringDate=dt.getMonth() + 1 + "/" + (dt.getDate()) + "/" + dt.getFullYear();
+    return stringDate;
+}
+
 //http://marcgrabanski.com/simulating-mouse-click-events-in-javascript/
 function mouseEvent(type, sx, sy, cx, cy) {
     var evt;
@@ -51,4 +65,4 @@ chrome.storage.sync.get("options", function (obj) {
 
 //chrome.storage.sync.get({ 'options': options });
 var header = $("body-mint");
-if (header) { header.insertAdjacentHTML('beforeend', "<a href={0} target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.43.4</a>".format(chrome.extension.getURL('options.html'))); }
+if (header) { header.insertAdjacentHTML('beforeend', "<a href={0} target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.50</a>".format(chrome.extension.getURL('options.html'))); }
