@@ -13,7 +13,7 @@
   {
       "matches": ["*://*.mint.com/*"],
 	  "css":["css/mojito.css", "css/print.css"],
-	  "js": ["transaction-module.js","Global.js","Mojito.js"]
+	  "js": ["transaction-module.js","Global.js","Mojito.js","transaction-filters.js"]
   } ],
   "background": {
     "scripts": ["background.js"]
@@ -21,5 +21,5 @@
   "web_accessible_resources": [
     "img/*.png","img/*.gif", "icon/*.png", "mojito.css", "print.css", "transactions.html", "options.html"
   ],
-  "permissions": ["*://*.mint.com/*","storage","activeTab","webNavigation"]
+  "permissions": ["*://*.mint.com/*","storage","activeTab","webNavigation","webRequest","webRequestBlocking"]
 }
