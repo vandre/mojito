@@ -65,4 +65,5 @@ chrome.storage.sync.get("options", function (obj) {
 
 //chrome.storage.sync.get({ 'options': options });
 var header = $("body-mint");
-if (header) { header.insertAdjacentHTML('beforeend', "<a href={0} target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.50</a>".format(chrome.extension.getURL('options.html'))); }
+var hasOptionsLink=document.querySelectorAll('a.mojito-options').length>0;
+if (header && !hasOptionsLink) { header.insertAdjacentHTML('beforeend', "<a href={0} class='mojito-options' target='_blank' style='position:absolute;top:12px;left:12px'>Mojito 1.50</a>".format(chrome.extension.getURL('options.html'))); }

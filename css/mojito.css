@@ -120,5 +120,10 @@ a.date-range {
     clear:both;
 }
 
+div#column-transactions div.controls#controls-top a.button.date-range.selected {
+    color: #fff !important;
+    background: #666 !important;
+}
+
 a.date-range ~ a.date-range{clear:inherit;}
 
