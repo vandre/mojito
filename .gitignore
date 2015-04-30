@@ -1,8 +1,2 @@
-.idea/encodings.xml
-.idea/misc.xml
-.idea/workspace.xml
-.idea/scopes/scope_settings.xml
-.idea/mojito.iml
-.idea/.name
-.idea/vcs.xml
-.idea/modules.xml
+.idea/
+bower_components/

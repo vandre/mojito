@@ -1,4 +1,3 @@
-
 function AddDateFilterBtn(el,description,filterCode){
     var title="Apply this date filter";
     var tpl='<a class="button date-range" href="javascript://"  title="{0}" data-filter="{2}">{1}</a>';
@@ -10,19 +9,20 @@ function bindDateFilterHandlers(){
         el.addEventListener("click", filterbByDate);
     });
 
-    document.querySelectorAll("#search-clear").forEach(function (el) {
-        el.addEventListener("click", function(){
-            chrome.runtime.sendMessage({msgName: "setDateFilters", msgData:new Object()},function(resp){
-                window.location.hash="";
+    bindClearDateFilter("#search-clear");
+    bindClearDateFilter("#search-date a");
 
-                document.querySelectorAll('a.date-range.selected').forEach(function(node){
-                    node.classList.remove('selected');
-                });
+}
+
+function bindClearDateFilter(btn){
+    document.querySelectorAll(btn).forEach(function (el) {
+        el.addEventListener("click", function(){
+            document.querySelectorAll('a.date-range.selected').forEach(function(node){
+                node.classList.remove('selected');
             });
+            window.location.hash="";
         });
     });
-
-
 }
 function filterbByDate(){
     var filterCode=this.getAttribute('data-filter');
@@ -71,20 +71,26 @@ function getLastDayOfMonth(dt){
     return new Date(dt.getFullYear(), dt.getMonth()+1, 0);
 }
 
-function SetFilter(objDates){
+function parseFilterFromUrl(){
     var thisHash=window.location.hash;
 
-    var data={};
+    var filter=null;
     if(thisHash.indexOf("#location")!=-1){
         //There is already a filter applied, we need to parse it and preserve it
         var location = decodeURIComponent(thisHash.replace('#location:', ''));
-        data = JSON.parse(location);
-        data.filterType = data.typeFilter || '';
-        //If period All was part of filter, remove this property, as it prevents date range from working
-        if(data.period){   delete data.period;       }
+        filter = JSON.parse(location);
+        filter.filterType = filter.typeFilter || '';
     }
+    return filter
+}
+
+function SetFilter(objDates){
+    var data=parseFilterFromUrl();
+    //If period All was part of filter, remove this property, as it prevents date range from working
+    if(data && data.period){   delete data.period;       }
     else {
         //Create default filter object
+        data={};
         data.query="";
         data.offset=0;
         data.typeFilter="cash";
@@ -93,21 +99,21 @@ function SetFilter(objDates){
     //Inject our date filter
     data.startDate=objDates.startDate;
     data.endDate=objDates.endDate;
-    chrome.runtime.sendMessage({msgName: "setDateFilters", msgData:data},function(resp){
-        var newHash="#location:"+encodeURIComponent(JSON.stringify(resp.data));
-        window.location.hash=newHash;
-    });
+    var newHash="#location:"+encodeURIComponent(JSON.stringify(data));
+    window.location.hash=newHash;
+
+
 }
 
 //Code to add date range buttons
 (function () {
     if (window.location.href.indexOf('transaction.event') == -1) {    return;    }
+    var filter=parseFilterFromUrl();
     var target = document.getElementById('body-mint');
     var observer = new window.MutationObserver(function (mutations) {
         var transactionControls = $('controls-top');
         var hasButtons=document.querySelectorAll('a.date-range').length>0;
         if (transactionControls != undefined && !hasButtons ) {
-            chrome.runtime.sendMessage({msgName: "setDateFilters", msgData:new Object()});
             AddDateFilterBtn(transactionControls,"This Week","tw");
             AddDateFilterBtn(transactionControls,"Last Week","lw");
             AddDateFilterBtn(transactionControls,"This Month","tm");
