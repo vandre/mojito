@@ -120,6 +120,22 @@ a.date-range {
     clear:both;
 }
 
+a.date-range.between {
+    margin-left:4px;
+    max-width:85px;
+    clear:left;
+}
+
+input#start, input#end {
+    position: relative;
+    float:left;
+    width:65px;
+    line-height: 18px;
+    margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom:4px;
+}
+
 div#column-transactions div.controls#controls-top a.button.date-range.selected {
     color: #fff !important;
     background: #666 !important;

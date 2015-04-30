@@ -1,3 +1,31 @@
+function AddCustomDateFilterBtn(){
+    var tpl='<a class="button date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Between Dates:</a>';
+    tpl+='<input type="text" id="start" /><input type="text" id="end" />';
+    $('controls-top').insertAdjacentHTML("beforeend", tpl);
+
+    var picker = new Pikaday({
+        field: document.getElementById('start'),
+        firstDay: 1,
+        minDate: new Date('2006-01-01'),
+        format:'L',
+        yearRange: [2006,2037],
+        onSelect: function() {
+            picker2.setMinDate(this.getDate());
+            $('start').value=this.toString('L');
+        }
+    });
+    var picker2 = new Pikaday({
+        field: document.getElementById('end'),
+        firstDay: 1,
+        minDate: new Date('2006-01-01'),
+        format:'L',
+        yearRange: [2006,2037],
+        onSelect: function() {
+            picker.setMaxDate(this.getDate());
+            $('end').value=this.toString('L');
+        }
+    });
+}
 function AddDateFilterBtn(el,description,filterCode){
     var title="Apply this date filter";
     var tpl='<a class="button date-range" href="javascript://"  title="{0}" data-filter="{2}">{1}</a>';
@@ -39,12 +67,21 @@ function filterbByDate(){
         case "lm":
             SetFilter(getMonthRange(true));
             break;
+        case "xy":
+            SetFilter(getCustomRange());
+            break;
 
     }
     document.querySelectorAll('a.date-range.selected').forEach(function(node){
         node.classList.remove('selected');
     });
     this.classList.add('selected');
+}
+
+function getCustomRange(){
+    var start=$('start').value;
+    var end = $('end').value;
+    return {    startDate:start, endDate:end}
 }
 
 function getWeekRange(isLastWeek){
@@ -108,7 +145,6 @@ function SetFilter(objDates){
 //Code to add date range buttons
 (function () {
     if (window.location.href.indexOf('transaction.event') == -1) {    return;    }
-    var filter=parseFilterFromUrl();
     var target = document.getElementById('body-mint');
     var observer = new window.MutationObserver(function (mutations) {
         var transactionControls = $('controls-top');
@@ -118,6 +154,7 @@ function SetFilter(objDates){
             AddDateFilterBtn(transactionControls,"Last Week","lw");
             AddDateFilterBtn(transactionControls,"This Month","tm");
             AddDateFilterBtn(transactionControls,"Last Month","lm");
+            AddCustomDateFilterBtn();
             bindDateFilterHandlers();
             observer.hasTransactions=true;
             observer.disconnect();
