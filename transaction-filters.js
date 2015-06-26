@@ -1,5 +1,5 @@
 function AddCustomDateFilterBtn(){
-    var tpl='<a class="button date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Between Dates:</a>';
+    var tpl='<a class="btn btn-hollow btn-sm date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Between Dates:</a>';
     tpl+='<input type="text" id="start" /><input type="text" id="end" />';
     $('controls-top').insertAdjacentHTML("beforeend", tpl);
 
@@ -28,7 +28,7 @@ function AddCustomDateFilterBtn(){
 }
 function AddDateFilterBtn(el,description,filterCode){
     var title="Apply this date filter";
-    var tpl='<a class="button date-range" href="javascript://"  title="{0}" data-filter="{2}">{1}</a>';
+    var tpl='<a class="btn btn-hollow btn-sm date-range" href="javascript://"  title="{0}" data-filter="{2}">{1}</a>';
     var btn=tpl.format(title,description,filterCode);
     el.insertAdjacentHTML("beforeend", btn);
 }
