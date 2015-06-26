@@ -116,19 +116,19 @@ div.module-transactions table tbody tr td:last-child {
 
 a.date-range {
     margin-left:4px;
-    max-width:60px;
-    clear:both;
+
 }
 
 a.date-range.between {
-    margin-left:4px;
-    max-width:85px;
-    clear:left;
+    margin-top:6px;
+    margin-left:0px;
+    margin-right: 4px;
+
 }
 
 input#start, input#end {
     position: relative;
-    float:left;
+    float:none;
     width:65px;
     line-height: 18px;
     margin-left: 5px;
@@ -136,10 +136,7 @@ input#start, input#end {
     margin-bottom:4px;
 }
 
-div#column-transactions div.controls#controls-top a.button.date-range.selected {
+div#column-transactions div.controls#controls-top a.btn.date-range.selected {
     color: #fff !important;
     background: #666 !important;
 }
-
-a.date-range ~ a.date-range{clear:inherit;}
-
