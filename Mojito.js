@@ -111,6 +111,7 @@ function setupRefreshObserver() {
 
         hideAccounts();
 
+
         if(document.querySelectorAll('a.mojito').length==0){
             removeAds();
             bindHandlers();
@@ -136,12 +137,43 @@ function hideAccounts() {
     }
 }
 
+function fixStyles() {
+    var styleEl = document.createElement('style'), styleSheet;
+
+    // Append style element to head
+    document.body.appendChild(styleEl);
+
+    // Grab style sheet
+    styleSheet = styleEl.sheet;
+
+    //Hide Accounts with zero balances
+    if (!OPTIONS.colorBalances) {
+
+        // Insert CSS Rule
+        styleSheet.insertRule('#module-accounts h3 > .balance  {color:black}', styleSheet.cssRules.length);
+        styleSheet.insertRule('#module-accounts h3 > .negativeBalance {color:black}', styleSheet.cssRules.length);
+    }
+
+    if(OPTIONS.oldFonts){
+        var selector='html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, var, strong, th, thead td, h3, .bold, h1, h2, .large, i, input, div.ajax, span.ajax, .form-error, .error label, .error .vError, table.popup fieldset .error label span, .error .ajax, input.submit, input.submit:focus';
+        var rule= '{ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif  !important; }';
+        styleSheet.insertRule(selector + rule , styleSheet.cssRules.length);
+
+        styleSheet.insertRule('#module-budget a {color: #3b73af !important }', styleSheet.cssRules.length);
+
+    }
+}
+
 function hideModules() {
     //Hide unwanted modules
     if (OPTIONS.layout) {
         OPTIONS.layout.forEach(function (id) {
             var el = document.getElementById(id);
             if(el) {  el.parentElement.classList.add('hide'); }
+            else {
+              el= document.querySelector('.' + id);
+              if(el) { el.classList.add('hide');}
+            }
         });
     }
 }
@@ -175,6 +207,8 @@ function removeAds(){
 (function () {
     if (window.location.href.indexOf('overview.event') == -1) {   return;    }
 
+
+
     // GA (anonymous)
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-49104711-2']);
@@ -192,6 +226,7 @@ function removeAds(){
             var moduleTransactions = $('module-transactions');
             if (moduleAlert != undefined && !moduleTransactions) {
                 setupModules();
+                fixStyles();
                 observer.hasModules = true;
             }
         }

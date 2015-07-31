@@ -5,9 +5,12 @@ function save_options() {
     OPTIONS.hideZeroBalance = document.getElementById('cbZero').checked;
     OPTIONS.disableTimeout = document.getElementById('cbTimeout').checked;
     OPTIONS.transactions = document.getElementById('transactions').checked;
+    OPTIONS.colorBalances = document.getElementById('cbColorBalance').checked;
+    OPTIONS.oldFonts = document.getElementById('cbOldFonts').checked;
+
     var el = document.getElementById('options');
     OPTIONS.layout=[];
-    document.querySelectorAll("input[id^='module']").forEach(function (x) {
+    document.querySelectorAll("input[data-type='module']").forEach(function (x) {
         if (!!x.value && x.checked==false) {
             OPTIONS.layout.push(x.value);
         }
@@ -22,12 +25,17 @@ function save_options() {
 // Restores select box state to saved value from localStorage.
 function restore_options() {
     chrome.storage.sync.get('options', function (obj) {
-        if (obj.options == undefined) { obj.options = { layout: [], transactions: true, hideZeroBalance: false, disableTimeout: false }; }
+        if (obj.options == undefined) { obj.options = {
+            layout: [], transactions: true, hideZeroBalance: false,
+            disableTimeout: false, colorBalances:false, oldFonts:false }; }
         OPTIONS = obj.options;
         document.getElementById('cbZero').checked = obj.options.hideZeroBalance;
         document.getElementById('cbTimeout').checked = obj.options.disableTimeout;
+        document.getElementById('cbColorBalance').checked = obj.options.colorBalances;
+        document.getElementById('cbOldFonts').checked = obj.options.oldFonts;
         obj.options.layout.forEach(function (id) {
-            document.getElementById(id).checked = false;
+            var el= document.getElementById(id);
+            if(el) el.checked = false;
         });
     });
 }
