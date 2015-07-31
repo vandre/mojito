@@ -47,7 +47,7 @@ div.module-transactions > div.module-content > table {
     font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
     font-size: 12px;
      border: 1px solid #ddd;
-     width:580px;
+     width:100%;
 }
 
 div.module-transactions tbody td {
