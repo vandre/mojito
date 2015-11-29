@@ -43,11 +43,15 @@ td.column-main > #column-main > .module {
     margin-bottom: 25px;
 }
 
+div.module-transactions > div.module-content {
+    font-size: 12px;
+}
+
 div.module-transactions > div.module-content > table {
     font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
-    font-size: 12px;
-     border: 1px solid #ddd;
-     width:100%;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    width:100%;
 }
 
 div.module-transactions tbody td {
