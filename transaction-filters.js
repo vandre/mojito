@@ -1,6 +1,8 @@
 function AddCustomDateFilterBtn(){
-    var tpl='<a class="btn btn-hollow btn-sm date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Between Dates:</a>';
-    tpl+='<input type="text" id="start" /><input type="text" id="end" />';
+    var label='Date Range: ';
+    var button='<a class="btn btn-hollow btn-sm date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Apply Filter</a>';
+    var fields='<input type="text" id="start" placeholder="Start Date" /><input type="text" id="end" placeholder="End Date" />';
+    var tpl = label+fields+button;
     $('controls-top').insertAdjacentHTML("beforeend", tpl);
 
     var picker = new Pikaday({
