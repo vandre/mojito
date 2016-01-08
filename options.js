@@ -2,7 +2,9 @@ NodeList.prototype['forEach'] = HTMLCollection.prototype['forEach'] = Array.prot
 var OPTIONS = {};
 // Saves options to localStorage.
 function save_options() {
-    OPTIONS.hideZeroBalance = document.getElementById('cbZero').checked;
+    OPTIONS.hideZeroCCBalance = document.getElementById('cbZero').checked;
+    OPTIONS.hideZeroBankBalance = document.getElementById('bankZero').checked;
+    OPTIONS.hideZeroInvestBalance = document.getElementById('investZero').checked;
     OPTIONS.disableTimeout = document.getElementById('cbTimeout').checked;
     OPTIONS.transactions = document.getElementById('transactions').checked;
     OPTIONS.colorBalances = document.getElementById('cbColorBalance').checked;
@@ -26,10 +28,13 @@ function save_options() {
 function restore_options() {
     chrome.storage.sync.get('options', function (obj) {
         if (obj.options == undefined) { obj.options = {
-            layout: [], transactions: true, hideZeroBalance: false,
+            layout: [], transactions: true, hideZeroCCBalance: false,
+            hideZeroBankBalance: false, hideZeroInvestBalance: false,
             disableTimeout: false, colorBalances:false, oldFonts:false }; }
         OPTIONS = obj.options;
-        document.getElementById('cbZero').checked = obj.options.hideZeroBalance;
+        document.getElementById('cbZero').checked = obj.options.hideZeroCCBalance;
+        document.getElementById('bankZero').checked = obj.options.hideZeroBankBalance;
+        document.getElementById('investZero').checked = obj.options.hideZeroInvestBalance;
         document.getElementById('cbTimeout').checked = obj.options.disableTimeout;
         document.getElementById('cbColorBalance').checked = obj.options.colorBalances;
         document.getElementById('cbOldFonts').checked = obj.options.oldFonts;
