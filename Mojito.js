@@ -97,7 +97,7 @@ function bindHandlers() {
         sortBalances(sortOrder, el.nextElementSibling);
         updateIcon(el, sortOrder);
     });
-    
+
 }
 
 function setupRefreshObserver() {
@@ -126,15 +126,23 @@ function setupRefreshObserver() {
 }
 function hideAccounts() {
     //Hide Accounts with zero balances
-    if (OPTIONS.hideZeroBalance) {
-        var accounts = document.querySelectorAll("li#moduleAccounts-credit li.accounts-data-li");
-        accounts.forEach(function (n) {
-            if (!n.classList.contains('error')) {
-                var bal = n.querySelector("span.balance").textContent;
-                if (bal == "$0.00") { n.parentElement.removeChild(n) }
-            }
-        });
+    var accounts = [];
+    if (OPTIONS.hideZeroCCBalance) {
+        accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-credit li.accounts-data-li")));
     }
+    if (OPTIONS.hideZeroBankBalance) {
+        accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-bank li.accounts-data-li")));
+    }
+    if (OPTIONS.hideZeroBankBalance) {
+        accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-investment li.accounts-data-li")));
+    }
+
+    accounts.forEach(function (n) {
+        if (!n.classList.contains('error')) {
+            var bal = n.querySelector("span.balance").textContent;
+            if (bal == "$0.00") { n.parentElement.removeChild(n) }
+        }
+    });
 }
 
 function fixStyles() {
@@ -185,7 +193,7 @@ function setupModules() {
 
 function removeAds(){
 	var adv = document.querySelectorAll('a.accounts-adv');
-	adv.forEach(function(el){ el.parentNode.removeChild(el);}); 
+	adv.forEach(function(el){ el.parentNode.removeChild(el);});
 }
 
 //Code to dynamically fix links with wrong category URL
@@ -201,7 +209,7 @@ function removeAds(){
 			});
 		}
   });
-  observer.observe(target, { childList: true, subtree: true });   
+  observer.observe(target, { childList: true, subtree: true });
 })();
 
 (function () {
