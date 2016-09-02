@@ -133,8 +133,11 @@ function hideAccounts() {
     if (OPTIONS.hideZeroBankBalance) {
         accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-bank li.accounts-data-li")));
     }
-    if (OPTIONS.hideZeroBankBalance) {
+    if (OPTIONS.hideZeroInvestBalance) {
         accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-investment li.accounts-data-li")));
+    }
+    if (OPTIONS.hideZeroLoanBalance) {
+        accounts = accounts.concat(Array.prototype.slice.call(document.querySelectorAll("li#moduleAccounts-loan li.accounts-data-li")));
     }
 
     accounts.forEach(function (n) {
