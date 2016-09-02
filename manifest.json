@@ -11,7 +11,7 @@
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "content_scripts": [ 
   {
-      "matches": ["*://*.mint.com/*"],
+      "matches": ["*://mint.intuit.com/*"],
 	  "css":["css/mojito.css", "css/print.css", "css/pikaday.css"],
 	  "js": ["moment.min.js","pikaday.js","transaction-module.js","Global.js","Mojito.js","transaction-filters.js"]
   } ],
