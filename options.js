@@ -5,6 +5,7 @@ function save_options() {
     OPTIONS.hideZeroCCBalance = document.getElementById('cbZero').checked;
     OPTIONS.hideZeroBankBalance = document.getElementById('bankZero').checked;
     OPTIONS.hideZeroInvestBalance = document.getElementById('investZero').checked;
+    OPTIONS.hideZeroLoanBalance = document.getElementById('loanZero').checked;
     OPTIONS.disableTimeout = document.getElementById('cbTimeout').checked;
     OPTIONS.transactions = document.getElementById('transactions').checked;
     OPTIONS.colorBalances = document.getElementById('cbColorBalance').checked;
@@ -30,11 +31,13 @@ function restore_options() {
         if (obj.options == undefined) { obj.options = {
             layout: [], transactions: true, hideZeroCCBalance: false,
             hideZeroBankBalance: false, hideZeroInvestBalance: false,
+            hideZeroLoanBalance: false,
             disableTimeout: false, colorBalances:false, oldFonts:false }; }
         OPTIONS = obj.options;
         document.getElementById('cbZero').checked = obj.options.hideZeroCCBalance;
         document.getElementById('bankZero').checked = obj.options.hideZeroBankBalance;
         document.getElementById('investZero').checked = obj.options.hideZeroInvestBalance;
+        document.getElementById('loanZero').checked = obj.options.hideZeroLoanBalance;
         document.getElementById('cbTimeout').checked = obj.options.disableTimeout;
         document.getElementById('cbColorBalance').checked = obj.options.colorBalances;
         document.getElementById('cbOldFonts').checked = obj.options.oldFonts;
