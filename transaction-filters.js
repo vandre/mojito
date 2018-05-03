@@ -138,8 +138,8 @@ function SetFilter(objDates){
     //Inject our date filter
     data.startDate=objDates.startDate;
     data.endDate=objDates.endDate;
-    var newHash="#location:"+encodeURIComponent(JSON.stringify(data));
-    window.location.hash=newHash;
+    var newHash=encodeURIComponent(JSON.stringify(data));
+    window.location.search=`startDate=${data.startDate}&endDate=${data.endDate}`
 
 
 }
