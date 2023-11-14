@@ -128,3 +128,21 @@ hr{
 .xx-large{
     font-size:30px
 }
+
+.tipjar {
+  border:none;
+}
+.tipjar div {display: inline-block; font-size: 1.3em; margin-right: 10px;}
+.tipjar input {
+    width:26px; 
+    height:26px; 
+  }
+
+div.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.container .item {
+  align-self: center;
+}

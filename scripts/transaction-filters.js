@@ -3,7 +3,7 @@ function AddCustomDateFilterBtn(){
     var button='<a class="btn btn-hollow btn-sm date-range between" href="javascript://"  title="Apply this date filter" data-filter="xy">Apply Filter</a>';
     var fields='<input type="text" id="start" placeholder="Start Date" /><input type="text" id="end" placeholder="End Date" />';
     var tpl = label+fields+button;
-    $('controls-top').insertAdjacentHTML("beforeend", tpl);
+    $('#controls-top').insertAdjacentHTML("beforeend", tpl);
 
     var picker = new Pikaday({
         field: document.getElementById('start'),
@@ -13,7 +13,7 @@ function AddCustomDateFilterBtn(){
         yearRange: [2006,2037],
         onSelect: function() {
             picker2.setMinDate(this.getDate());
-            $('start').value=this.toString('L');
+            $('#start').value=this.toString('L');
         }
     });
     var picker2 = new Pikaday({
@@ -24,7 +24,7 @@ function AddCustomDateFilterBtn(){
         yearRange: [2006,2037],
         onSelect: function() {
             picker.setMaxDate(this.getDate());
-            $('end').value=this.toString('L');
+            $('#end').value=this.toString('L');
         }
     });
 }
@@ -81,8 +81,8 @@ function filterbByDate(){
 }
 
 function getCustomRange(){
-    var start=$('start').value;
-    var end = $('end').value;
+    var start=$('#start').value;
+    var end = $('#end').value;
     return {    startDate:start, endDate:end}
 }
 
@@ -139,17 +139,29 @@ function SetFilter(objDates){
     data.startDate=objDates.startDate;
     data.endDate=objDates.endDate;
     var newHash="#location:"+encodeURIComponent(JSON.stringify(data));
+
+     chrome.runtime.sendMessage({ greeting: "updateFilters", filter:data },
+            function(response) { 
+                 //console.log(response.status);
+                //window.location.hash=newHash;
+    });
+    
     window.location.hash=newHash;
-
-
+    window.location.reload(false);
+   
+  
 }
-
-//Code to add date range buttons
-(function () {
-    if (window.location.href.indexOf('transaction.event') == -1) {    return;    }
-    var target = document.getElementById('body-mint');
+function hideOffers(){
+    console.log('hide ran!');
+    var style="<style>.offerSection { display: none !important;}</style>";
+    $('#controls-top').insertAdjacentHTML("beforeend", style);
+    setInterval(
+        ()=>document.querySelectorAll('div.offerSection').forEach((el)=> el.classList.add('hide'),2000));
+}
+function SetButtons(){
+    var target = document.querySelector('body')
     var observer = new window.MutationObserver(function (mutations) {
-        var transactionControls = $('controls-top');
+        var transactionControls = $('#controls-top');
         var hasButtons=document.querySelectorAll('a.date-range').length>0;
         if (transactionControls != undefined && !hasButtons ) {
             AddDateFilterBtn(transactionControls,"This Week","tw");
@@ -158,10 +170,18 @@ function SetFilter(objDates){
             AddDateFilterBtn(transactionControls,"Last Month","lm");
             AddCustomDateFilterBtn();
             bindDateFilterHandlers();
+            hideOffers();
             observer.hasTransactions=true;
             observer.disconnect();
         }
     });
     observer.observe(target, { childList: true, subtree: true });
+}
+
+//Code to add date range buttons when user navigates directly to transaction.event page
+//SetButtons here will only run on a hard refresh
+(function () {
+    if (window.location.href.indexOf('transaction.event') == -1) {    return;    }
+    SetButtons();
 })();
 

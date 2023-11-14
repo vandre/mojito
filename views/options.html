@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Mojito Options</title>
+    <link rel="stylesheet" href="/css/chrome_shared.css" />
+</head>
+
+<body style="margin:50px">
+    <div class="container">
+        <div id="options" class="item options">
+            <h1>Global</h1>
+            <h2>Disable timeout</h2>
+            <div class="onoffswitch">
+                <input id="cbTimeout" class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="cbTimeout" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h1>Overview Page</h1>
+            <h2>Dark mode</h2>
+            <div class="onoffswitch">
+                <input id="cbDarkMode" class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="cbDarkMode" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+
+            <h2>Hide credit cards with zero balance</h2>
+            <div class="onoffswitch">
+                <input id="cbZero" value='div[data-automation-id="CreditAccount-expandable-card"] a[href^="/t"]'
+                    class="onoffswitch-checkbox" type="checkbox">
+                <label class="onoffswitch-label" for="cbZero">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide bank accounts with zero balance</h2>
+            <div class="onoffswitch">
+                <input id="bankZero" value='div[data-automation-id="BankAccount-expandable-card"] a[href^="/t"]'
+                    class="onoffswitch-checkbox" type="checkbox">
+                <label class="onoffswitch-label" for="bankZero">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide investments with zero balance</h2>
+            <div class="onoffswitch">
+                <input id="investZero" value='div[data-automation-id="InvestmentAccount-expandable-card"] a[href^="/t"]'
+                    class="onoffswitch-checkbox" type="checkbox">
+                <label class="onoffswitch-label" for="investZero">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Loans with zero balance</h2>
+            <div class="onoffswitch">
+                <input id="loanZero" value='div[data-automation-id="LoanAccount-expandable-card"] a[href^="/t"]'
+                    class="onoffswitch-checkbox" type="checkbox">
+                <label class="onoffswitch-label" for="loanZero">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Property with zero balance</h2>
+            <div class="onoffswitch">
+                <input id="propZero" value='div[data-automation-id="PropertyAccount-expandable-card"] a[href="/settings?filter=property"]'
+                    class="onoffswitch-checkbox" type="checkbox">
+                <label class="onoffswitch-label" for="propZero">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Marketplace</h2>
+            <div class="onoffswitch">
+                <input id="marketplaceInput" data-type="module" value="#marketplace-overview-cards" 
+                    class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="marketplaceInput" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Offers</h2>
+            <div class="onoffswitch">
+                <input id="offerInput" data-type="module" value="[class^='HostedCarousel'][data-morpheus-pluginid='promotions-personalized-offers-ui']" 
+                    class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="offerInput" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Transactions</h2>
+            <div class="onoffswitch">
+                <input id="transactionsInput" data-type="module" value=".transactionsWidget" 
+                    class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="transactionsInput" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+            <h2>Hide Loan Calculator</h2>
+            <div class="onoffswitch">
+                <input id="interestInput" data-type="module" value=".interestWidget" 
+                    class="onoffswitch-checkbox" type="checkbox"  />
+                <label for="interestInput" class="onoffswitch-label">
+                    <div class="onoffswitch-inner"></div>
+                    <div class="onoffswitch-switch"></div>
+                </label>
+            </div>
+
+            <div style="clear:both;">
+                <div id="status" style="height:20px;"></div>
+                <button id="save">Save</button>
+            </div>
+
+        </div>
+        <div class="item" >
+            <img id="qrcode" src="/images/doge.png" width="300" alt="so much wow"/>
+        </div>
+        
+    </div>
+  
+
+    <br/>
+
+    <fieldset class="tipjar">
+        <legend><h2>Buy me a mojito...</h2></legend>
+        <div>
+          <input type="radio" id="so"  name="coin" value="/images/doge.png"
+                 checked>
+          <label for="so">DOGE</label>
+        </div>
+    
+        <div>
+          <input type="radio" id="much"  name="coin" value="/images/bitcoin.png">
+          <label for="much">Bitcoin</label>
+        </div>
+        <div>
+            <input type="radio" id="woof" name="coin" value="/images/venmo.png">
+            <label for="woof">Venmo</label>
+          </div>
+    
+        <div>
+          <input type="radio" id="wow" name="coin" value="/images/paypal.png">
+          <label for="wow">PayPal</label>
+        </div>
+    </fieldset>
+   
+<img src="/images/shiba.png" id="doggo" alt="woof"/>
+
+    <p>&copy; Ethos 1, LLC. All rights reserved</p>
+
+</body>
+
+<script src="/scripts/options.js"></script>
+
+</html>

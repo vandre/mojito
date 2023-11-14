@@ -1,41 +1,45 @@
-/*Fix for at budget items been shown as yellow*/
-#module-budget table tr.warning div.bar span.full_bar {
-    border: 1px solid #3d9d50;
-    background: -webkit-linear-gradient(top, #94da52, #2fa736)
-}
+div.hide{ display: none;}
 
-ul.planning_items li.warning div.status span.progress_bar.full {
-  background-position:  left -45px;
-}
-#transaction-quickview {
+#transaction-quickview, #interest-quickview {
     float:right;
 }
 
-div.module-transactions tbody td.loading{
+div.module tbody td.loading{
 text-align:center !important;
-background-image: url('chrome-extension://__MSG_@@extension_id__/img/refresh-animated.gif');
+background-image: url('chrome-extension://__MSG_@@extension_id__/images/refresh-animated.gif');
 background-repeat: no-repeat;
 background-position:63%;
 }
 
+/* Add padding for sort balances */
+div#module-accounts h3.unselectable {
+    padding-right:39px;
+}
+
+/* Do not show error dot in header*/
+div#module-accounts div.account-header-wrapper a.status {
+    display:none;
+}
+
 a.mojito{
-width: 16px;
-height: 16px;
-position: absolute;
-right: 13px;
-top: 18px;
-z-index: 100;
-background-repeat: no-repeat;
-background-image: url('chrome-extension://__MSG_@@extension_id__/img/default.png');
+    width: 16px;
+    height: 16px;
+    position: relative;
+    display:inline-block;
+    right: 8px;
+    top: 3px;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/default.png');
 }
 
 a.mojito.asc{
-background-image: url('chrome-extension://__MSG_@@extension_id__/img/ascending.png');
+background-image: url('chrome-extension://__MSG_@@extension_id__/images/ascending.png');
 }
 
 
 a.mojito.desc{
-background-image: url('chrome-extension://__MSG_@@extension_id__/img/descending.png');
+background-image: url('chrome-extension://__MSG_@@extension_id__/images/descending.png');
 }
 
 /*Increase information density*/
@@ -43,31 +47,58 @@ td.column-main > #column-main > .module {
     margin-bottom: 25px;
 }
 
-div.module-transactions > div.module-content {
+div.CardView {
+    border: 1px solid #e3e5e8;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 24px;
+    padding-bottom:5px; /*Increase information density*/
+}
+
+div.CardView .cardContent {
+    margin-top: 15px;
+}
+
+div.CardView .cardHeader {
+    min-height: 10px;
+    padding-bottom:5px;
+}
+
+div.CardView .cardHeader h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #393a3d;
+}
+
+div.module-transactions div.module-content {
     font-size: 12px;
 }
 
-div.module-transactions > div.module-content > table {
-    font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
-    border: 1px solid #ddd;
+div.module-transactions  div.module-content > table,
+table#amortize-table {
+    border: 1px solid transparent;
     margin-bottom: 10px;
     width:100%;
 }
 
-div.module-transactions tbody td {
+div.module-transactions tbody td, table#amortize-table td  {
     padding:2px 4px;
     height:20px;
-    border:1px solid;
-    border-color: #DBDAD8 #EEE ;
+    border:none;
+    border-bottom:  1px solid #ccc;
     cursor:pointer;
 }
+div.module-transactions tbody td:first-child {
+    white-space: nowrap;
+}
+
 div.module-transactions tbody td > span {
 	display:inline-block;
 	vertical-align:middle;
 }
 
 span.note{
-background-image: url('chrome-extension://__MSG_@@extension_id__/img/note.png');
+background-image: url('chrome-extension://__MSG_@@extension_id__/images/note.png');
 width:16px;
 height:16px;
 margin-left:4px
@@ -83,19 +114,13 @@ div.module-transactions tbody tr.pending td {
 }
 
 
-div.module-transactions thead th {
-   font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
-   font-size: 12px;
-   font-weight:bold;
-   text-transform:none;
-   background:-webkit-linear-gradient(top,#fff,#e8e8e8);
-   color: #666;
+div.module-transactions thead th, table#amortize-table th {
+   font-size: 14px;
+   font-weight:600;
+   background-color:#f4f5f8;
+   border-bottom: 1px solid #ccc;
+   color: #393a3d;
    padding:6px 4px;
-}
-
-div.module-transactions table tbody tr:nth-child(even) td {
-    background-color: whitesmoke;
-   
 }
 
 div.module-transactions table tbody tr:hover td {
@@ -143,4 +168,106 @@ input#start, input#end {
 div#column-transactions div.controls#controls-top a.btn.date-range.selected {
     color: #fff !important;
     background: #666 !important;
+}
+
+div#advice-top-container{
+    display:none;
+}
+
+div.module-interest td {
+    padding:2px 4px;
+    height:20px;
+    cursor:pointer;
+}
+
+div.module-interest div#params-wrap {
+    display:inline-block;
+}
+div.module-interest div#bookmark-wrap {
+    display:inline-block;
+    vertical-align: top;
+    margin-left:15px;
+}
+
+div#bookmark-wrap ul li {
+    
+    border: 1px solid #FFC107;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: #fff8dc;
+    margin-bottom:2px;
+    cursor:pointer;
+}
+
+div#bookmark-wrap ul li:hover, div#bookmark-wrap ul li.active{
+    background-color:gold;
+}
+
+div#bookmark-wrap ul li > span:hover {
+    color:darkred;
+  
+}
+
+table#loan-params tbody {
+    display:block;
+    padding:8px;
+    border:1px solid #ccc
+}
+
+
+
+div.module-interest{
+    font-size:12px;
+}
+
+table#amortize-table th {
+    padding:2px;
+}
+
+#amortize-content.min table tbody tr:nth-child(n+13) {
+    display: none;
+}
+
+#amortize-content p {
+    margin-bottom:5px;
+}
+
+table#amortize-table th, table#amortize-table td {
+    text-align:center;
+}
+
+body div#mat-browser{
+    background-color:green;
+}
+
+body div#mat-browser a{
+    color:bisque;
+}
+
+div.bookmark-box { 
+    float:right;
+    position:relative;
+    top:-4px;
+}
+input#bookmark-name {
+    position: relative;
+    top: -21px;
+    border-radius: 6px;
+    border: 1px solid lavender;
+    left: 83px;
+    padding:2px;
+    width:137px;
+}
+b.notch {
+    position: absolute;
+    top: -1px;
+    right: 81px;
+    margin: 0;
+    border-top: 11px solid lavender;
+    border-left: 15px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
 }

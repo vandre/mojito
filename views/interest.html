@@ -1,0 +1,102 @@
+<div>
+    <div class="CardView interestWidget module-interest hide" id="module-interest">
+        <header class="cardHeader">
+            <h3>Loan Repayment Calculator</h3>
+        </header>
+        <div class="cardContent">
+            <div class="module-content" style="height: auto;" id="interest-content">
+                <span>Loan</span> <select name="loan-select" id="loan-select"></select><br/> <br/>
+                
+                <h4 class="hide error" id="loan-error">Uh. Oh. Please check your entries. 
+                    Too many mojitos, perhaps? </h4>
+                <div id="params-wrap">
+                    <table id="loan-params">
+                        <tr>
+                            <td>Balance</td>
+                            <td><input type="text" name="loan-balance" id="loan-balance" size="10" ></td>
+                            <td>Rate (APR)</td>
+                            <td><input type="text" name="loan-rate" id="loan-rate" size="5"> </td>
+                        </tr>
+                        <tr>
+                            <td>Payment Amount</td>
+                            <td> <input type="text" name="loan-pay" id="loan-pay" size="5"></td>
+                            <td>Pay on Day</td>
+                            <td> <input type="text" name="loan-due" id="loan-due" size="10"> </td>
+                        <tr>
+                            <td colspan="4"><i>Optional</i></td>
+                        </tr>
+                            <td colspan="4">
+                                <input type="checkbox" name="isDaily" id="isDaily" />
+                            Interest accrues daily  (Usually car or student loans)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="limitMonths" id="limitMonths" />
+                                Calculate only first</td>
+                            <td colspan='3'>
+                                <input type="text" name="loan-limit" id="loan-limit" size="2" disabled> payments</td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan='3'>
+                                <input type="checkbox" name="extraPay" id="extraPay" />
+                                Add an extra payment so balance is multiple of</td>
+                            <td>
+                                <input type="text" name="pay-mult" id="pay-mult" size="3" disabled> </td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="bookmark-wrap">
+                    <ul>
+
+                    </ul>
+                </div>
+                <br/>
+                <h4><span>Pro Tip: You can bookmark previous calculations</span></h4>
+                <br/>
+                <a class="btn btn-primary saveButton" id="amortize-button" ><span>Calculate</span></a> 
+                
+                <br/>
+                <br/>
+                <div id="amortize-content" class="hide min">
+                    <div class="bookmark-box">
+                        <input class='callout hide' 
+                        type="textbox" name='bookmark-name' id='bookmark-name' placeholder='Type a name and hit Enter'>
+                        <b class='callout notch hide'> </b>
+                        <a id='bookmark-link'><span>Bookmark This</span></a>
+                    </div>
+                    <p>
+                        <b>Period:</b> <span id='amortize-time'></span>&nbsp;&nbsp;&nbsp;
+                        <b>Cumulative Interest:</b> <span id='amortize-interest'></span>&nbsp;&nbsp;&nbsp;
+                    </p>
+                    <table id="amortize-table" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Payment</th>
+                                <th>Interest</th>
+                                <th>Principal</th>
+                                <th>Cumulative <br/> Interest</th>
+                                <th>Cumulative <br/> Principal</th>
+                                <th>Remaining <br/>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amortize-table-tbody">
+                        <tr><td colspan="8" class="loading">Calculating...</td></tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a id="interest-download" href="#">Save to File</a>
+                        <a id="interest-quickview" href="#amortize-content">See More</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>    
+        <div class="button-bar clearfix"></div>
+        
+    </div>
+</div>

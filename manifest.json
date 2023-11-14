@@ -1,25 +1,51 @@
 {
-  "manifest_version": 2,
-  "icons": { "16":  "icon/mojito16.png",
-			 "48":  "icon/mojito48.png",
-             "128": "icon/mojito128.png" },
-  "name": "Mojito - Mint with a kick...",
-  "short_name":"Mojito",
-  "description": "Customize Mint timeout, account sort order,  page layout, transaction filtering and more...",
-  "version": "1.56",
-  "options_page": "options.html",
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-  "content_scripts": [ 
-  {
-      "matches": ["*://mint.intuit.com/*","*://*.mint.com/*"],
-	  "css":["css/mojito.css", "css/print.css", "css/pikaday.css"],
-	  "js": ["moment.min.js","pikaday.js","transaction-module.js","Global.js","Mojito.js","transaction-filters.js"]
-  } ],
-  "background": {
-    "scripts": ["background.js"]
+  "manifest_version": 3,
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
   },
-  "web_accessible_resources": [
-    "img/*.png","img/*.gif", "icon/*.png", "mojito.css", "print.css", "pikaday.css", "transactions.html", "options.html"
+  "name": "Mojito - Mint with a kick...",
+  "short_name": "Mojito",
+  "description": "Mint Customizations",
+  "version": "2.0.1",
+  "version_name": "2.0",
+  "minimum_chrome_version": "99",
+  "options_page": "views/options.html",
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "matches": ["*://mint.intuit.com/*"],
+      "exclude_matches": ["*://mint.intuit.com/"],
+      "css": [
+        "css/mojito.css",
+        "css/print.css",
+        "css/pikaday.css"
+      ],
+      "js": [
+        "scripts/lodash.core.js",
+        "scripts/moment.min.js",
+        "scripts/pikaday.js",
+        "scripts/interest.js",
+        "scripts/transaction-module.js",
+        "scripts/global.js",
+        "scripts/main.js"
+      ]
+    }
   ],
-  "permissions": ["*://mint.intuit.com/*","*://*.mint.com/*","storage","activeTab","webNavigation","webRequest","webRequestBlocking"]
+  "background": {  "service_worker":  "scripts/background.js"  },
+  "web_accessible_resources": [{
+    "resources": ["images/*.png",
+      "images/*.gif",
+      "css/mojito.css",
+      "css/print.css",
+      "css/pikaday.css",
+      "views/*.html"],
+    "matches": [ "*://mint.intuit.com/*"]
+  }],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh0Pc2f3spVLg6pXfjmED/ENZ0HG+jrRrEmfnKQz9gTL1qGOI3maemKaq0GG0E9SzAbSnbkKdCJCx/nOLwvNsjby2aiGWupAEOIGCGNfHNpPfkuUvJRReht3kXbFpbw1A4ze4YoTFBqtaNciJZzzMPmZc3I1gGPB2fmKBhzyW/mtch7x5LXTXc7fJTBpMKzGn2BQH+Kd6LqNkCkaDnVE0MbfFBsGpRd8a32Y6IIWpGluz1eXc0I7y94i9VvkvpMSmVNWJZXEZxgVHj1H4qQh3WL2PkWIWMrHikqJkWqsLWKFAn26fMGQZU9JPqNBqdAyI4RnxBoBNTyHiX0ad3uVnHQIDAQAB",
+  "permissions": [
+    "storage"
+    
+  ]
 }
